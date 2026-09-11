@@ -17,15 +17,15 @@
       title: "3EX Mobile",
       label: "3EX · MOBILE TRADING",
       year: "2025",
-      heroVideo: "assets/3ex-hero.mp4",
-      strategyImg: "assets/3ex-screen-7.png",
+      heroVideo: "/assets/3ex-hero.mp4",
+      strategyImg: "/assets/3ex-screen-7.png",
       gallery: [
-        "assets/3ex-screen-1.png",
-        "assets/3ex-screen-2.png",
-        "assets/3ex-screen-3.png",
-        "assets/3ex-screen-4.png",
-        "assets/3ex-screen-5.png",
-        "assets/3ex-screen-6.png"
+        "/assets/3ex-screen-1.png",
+        "/assets/3ex-screen-2.png",
+        "/assets/3ex-screen-3.png",
+        "/assets/3ex-screen-4.png",
+        "/assets/3ex-screen-5.png",
+        "/assets/3ex-screen-6.png"
       ],
       problem: "The existing app treated every user the same: a dense, pro-grade interface that intimidated beginners at the exact moments that mattered most — reading the market and confirming a trade. Novices froze at irreversible actions; experienced traders fought navigation depth between spotting a signal and executing on it.",
       process: [
@@ -47,12 +47,12 @@
       year: "2025",
       caseStudyLink: "https://medium.com/@chiemerieomeruta/designing-the-nebula-lending-protocol-using-the-double-diamond-framework-ux-case-study-for-defi-f5c77f22f13b",
       gallery: [
-        "assets/nebula-screen-1.jpg",
-        "assets/nebula-screen-2.jpg",
-        "assets/nebula-screen-3.jpg",
-        "assets/nebula-screen-4.jpg",
-        "assets/nebula-screen-5.jpg",
-        "assets/nebula-screen-6.jpg"
+        "/assets/nebula-screen-1.jpg",
+        "/assets/nebula-screen-2.jpg",
+        "/assets/nebula-screen-3.jpg",
+        "/assets/nebula-screen-4.jpg",
+        "/assets/nebula-screen-5.jpg",
+        "/assets/nebula-screen-6.jpg"
       ],
       overview: "Nebula Protocol is a DeFi lending and borrowing dApp with a distinctive proposition: it accepts DEX LP tokens as collateral, letting liquidity providers unlock capital without exiting their positions. Powerful idea — but LP collateral is unfamiliar territory even for experienced DeFi users, and unfamiliarity in finance reads as risk.",
       problem: "Users understood lending and they understood liquidity provision — but the combination was new, and the interface did little to bridge the gap. Collateral health, liquidation thresholds and LP-token valuation were presented as raw numbers with no narrative, so users either over-collateralized out of fear or stayed away entirely.",
@@ -85,12 +85,12 @@
       label: "3EX · WEB EXCHANGE",
       year: "2025",
       gallery: [
-        "assets/3ex-web-screen-1.jpg",
-        "assets/3ex-web-after.png",
-        "assets/3ex-web-before.png",
-        "assets/3ex-web-strategy.png",
-        "assets/3ex-web-hero.png",
-        "assets/3ex-web-screen-2.jpg"
+        "/assets/3ex-web-screen-1.jpg",
+        "/assets/3ex-web-after.png",
+        "/assets/3ex-web-before.png",
+        "/assets/3ex-web-strategy.png",
+        "/assets/3ex-web-hero.png",
+        "/assets/3ex-web-screen-2.jpg"
       ],
       problem: "The exchange wasn't broken in one big way — it was dense, visually inconsistent and overwhelming in a dozen small ways that stacked. Key metrics like price trends, order-book depth and portfolio performance were buried or hard to interpret; jargon and unclear navigation pushed cognitive load high exactly when markets moved fastest.",
       process: [
@@ -109,12 +109,12 @@
       label: "CPT FUNDED · PROP TRADING",
       year: "2024",
       gallery: [
-        "assets/cpt-after.png",
-        "assets/cpt-before.png",
-        "assets/cpt-strategy.png",
-        "assets/cpt-hero.png",
-        "assets/cpt-cover.jpg",
-        "assets/cpt-screen-1.jpg"
+        "/assets/cpt-after.png",
+        "/assets/cpt-before.png",
+        "/assets/cpt-strategy.png",
+        "/assets/cpt-hero.png",
+        "/assets/cpt-cover.jpg",
+        "/assets/cpt-screen-1.jpg"
       ],
       problem: "Mismatched type sizes, uneven spacing, clashing colors and unpredictable navigation created a quiet sense of untrustworthiness — fatal for a brand asking traders to commit money. These weren't surface flaws; they were trust leaks at every touchpoint.",
       process: [

@@ -1,10 +1,16 @@
-/* Case Study page — renders one project from data.js based on ?p=<slug>. */
+/* Case Study page — renders one project from data.js.
+
+   Each project has its own URL (/cpt-funded/), and that page's shell declares
+   which project it is via window.PROJECT_SLUG. The ?p=<slug> query parameter is
+   still honoured as a fallback so old links keep working. */
 
 const { useState, useEffect, useRef } = React;
 const { Cursor, useReveal, Magnetic, RevealLine, RevealFade, Arrow, Curtain, Nav, Footer, ThemeToggle, ScrollBar, useSiteTheme } = window;
 
 function getProject() {
-  const slug = new URLSearchParams(window.location.search).get("p");
+  const fromShell = window.PROJECT_SLUG;
+  const fromQuery = new URLSearchParams(window.location.search).get("p");
+  const slug = fromShell || fromQuery;
   const list = window.PROJECTS || [];
   const idx = list.findIndex((p) => p.slug === slug);
   const i = idx >= 0 ? idx : Math.max(0, list.findIndex((p) => !p.external));
@@ -109,7 +115,11 @@ function CaseStudy() {
   const prev = navList[(ni - 1 + navList.length) % navList.length];
   const next = navList[(ni + 1) % navList.length];
 
-  useEffect(() => {document.title = `${p.title} — Victor Chiemerie`;}, [p]);
+  /* Pages that declare their own slug ship a static, SEO-complete <title>;
+     don't clobber it. Only the ?p= fallback needs a title set at runtime. */
+  useEffect(() => {
+    if (!window.PROJECT_SLUG) document.title = `${p.title} — Victor Chiemerie`;
+  }, [p]);
   useEffect(() => {
     if (p.external && p.link) window.location.replace(p.link);
   }, [p]);
@@ -120,7 +130,7 @@ function CaseStudy() {
     <main>
       <header className="cs-header shell" data-screen-label={`Case study: ${p.title}`} data-comment-anchor="98f9704c67-header-64-7">
         <RevealFade data-comment-anchor="d02e1acce5-div-83-10">
-          <a href="work.html" className="cs-crumb" data-cursor="hover" data-cursor-label="Back">
+          <a href="/work/" className="cs-crumb" data-cursor="hover" data-cursor-label="Back">
             <Arrow /> All work
           </a>
         </RevealFade>
@@ -241,11 +251,11 @@ function CaseStudy() {
       </Section>
 
       <nav className="cs-pagenav shell" data-screen-label="Prev / next case">
-        <a href={`case-study.html?p=${prev.slug}`} data-cursor="hover" data-cursor-label="Previous">
+        <a href={window.projectHref(prev)} data-cursor="hover" data-cursor-label="Previous">
           <div className="dir">← Previous</div>
           <div className="t">{prev.title}</div>
         </a>
-        <a className="next" href={`case-study.html?p=${next.slug}`} data-cursor="hover" data-cursor-label="Next">
+        <a className="next" href={window.projectHref(next)} data-cursor="hover" data-cursor-label="Next">
           <div className="dir">Next →</div>
           <div className="t">{next.title}</div>
         </a>

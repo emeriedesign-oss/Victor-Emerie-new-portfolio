@@ -1,5 +1,5 @@
 /* Shared site chrome — Victor Chiemerie portfolio
-   Used by Portfolio.html, Work.html, case-study.html, About.html, Services.html */
+   Used by every page shell in src/ */
 
 const { useState, useEffect, useRef } = React;
 
@@ -112,10 +112,10 @@ function Curtain({ active, onDone, label }) {
 
 /* ============ Nav (page-aware) ============ */
 const NAV_LINKS = [
-{ id: "work", label: "Work", href: "work.html" },
-{ id: "services", label: "Services", href: "services.html" },
-{ id: "about", label: "About", href: "about.html" },
-{ id: "contact", label: "Contact", href: "Portfolio.html#contact" }];
+{ id: "work", label: "Work", href: "/work/" },
+{ id: "services", label: "Services", href: "/services/" },
+{ id: "about", label: "About", href: "/about/" },
+{ id: "contact", label: "Contact", href: "/#contact" }];
 
 
 function Nav({ page = "home", onCurtain }) {
@@ -157,9 +157,9 @@ function Nav({ page = "home", onCurtain }) {
     if (page === "home") {window.scrollTo({ top: 0, behavior: "smooth" });return;}
     if (onCurtain) {
       onCurtain("Home");
-      setTimeout(() => {window.location.href = "portfolio.html";}, 300);
+      setTimeout(() => {window.location.href = "/";}, 300);
     } else {
-      window.location.href = "portfolio.html";
+      window.location.href = "/";
     }
   };
 
@@ -167,7 +167,7 @@ function Nav({ page = "home", onCurtain }) {
     <>
       <nav className={`nav ${stuck ? "is-stuck" : ""}`}>
         <div className="shell nav-inner">
-          <a href="portfolio.html" className="brand" onClick={goHome} data-cursor="hover" data-cursor-label="Home">
+          <a href="/" className="brand" onClick={goHome} data-cursor="hover" data-cursor-label="Home">
             <span className="brand-dot"></span>
             <span className="brand-first">Victor</span> <span className="brand-last">Chiemerie</span>
           </a>
@@ -196,7 +196,7 @@ function Nav({ page = "home", onCurtain }) {
 
       <div className={`mobile-menu ${menuOpen ? "is-open" : ""}`}>
         <div className="mobile-menu-links">
-          <a href="portfolio.html" onClick={goHome}>Home</a>
+          <a href="/" onClick={goHome}>Home</a>
           {NAV_LINKS.map((l, i) =>
           <a key={l.id} href={l.href} onClick={(e) => go(e, l)} className={l.id === page ? "is-current" : ""} style={{ "--i": i + 1 }}>
               {l.label}
