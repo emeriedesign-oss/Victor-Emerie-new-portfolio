@@ -43,7 +43,7 @@ function Hero() {
         <figure className="hero-figure">
           <div className="hero-figure-frame">
             <img src="assets/victor-hero-portrait.png" alt="Victor Chiemerie" width="800" height="800" fetchpriority="high" decoding="async" />
-            <a href="About.html" className="hero-figure-cta" data-cursor="hover" data-cursor-label="About">
+            <a href="about.html" className="hero-figure-cta" data-cursor="hover" data-cursor-label="About">
               <span>About me</span>
               <Arrow />
             </a>
@@ -112,7 +112,7 @@ function Work() {
             <a
               key={p.num}
               className="work-row"
-              href={isExt ? "https://usehaya.io/" : `Case Study.html?p=${p.slug}`}
+              href={isExt ? "https://usehaya.io/" : `case-study.html?p=${p.slug}`}
               target={isExt ? "_blank" : undefined}
               rel={isExt ? "noopener noreferrer" : undefined}
               onMouseEnter={() => setHover(i)}
@@ -132,7 +132,7 @@ function Work() {
       <div className="work-foot">
         <RevealFade>
           <Magnetic strength={0.25}>
-            <a href="Work.html" className="btn btn-ghost" data-cursor="hover" data-cursor-label="All work">
+            <a href="work.html" className="btn btn-ghost" data-cursor="hover" data-cursor-label="All work">
               <span>View all case studies</span>
               <Arrow />
             </a>
@@ -213,7 +213,7 @@ function Services() {
       <div className="work-foot">
         <RevealFade>
           <Magnetic strength={0.25}>
-            <a href="Services.html" className="btn btn-ghost" data-cursor="hover" data-cursor-label="Services">
+            <a href="services.html" className="btn btn-ghost" data-cursor="hover" data-cursor-label="Services">
               <span>How an engagement works</span>
               <Arrow />
             </a>
@@ -261,7 +261,7 @@ function About() {
             </p>
             <div className="work-foot" style={{ marginTop: 44, textAlign: "left" }}>
               <Magnetic strength={0.25}>
-                <a href="About.html" className="btn btn-ghost" data-cursor="hover" data-cursor-label="Journey">
+                <a href="about.html" className="btn btn-ghost" data-cursor="hover" data-cursor-label="Journey">
                   <span>My Design Journey</span>
                   <Arrow />
                 </a>

@@ -17,7 +17,7 @@ function WorkCard({ p, i }) {
   const isExt = p.external && p.link;
   return (
     <RevealFade as="div" className={`wp-card ${feature ? "is-feature" : ""}`} delay={(i % 2) * 100}>
-      <a href={isExt ? p.link : `Case Study.html?p=${p.slug}`} target={isExt ? "_blank" : undefined} rel={isExt ? "noopener noreferrer" : undefined} data-cursor="hover" data-cursor-label={isExt ? "Use Haya Ai" : "Read case"} data-screen-label={meta.display || p.title}>
+      <a href={isExt ? p.link : `case-study.html?p=${p.slug}`} target={isExt ? "_blank" : undefined} rel={isExt ? "noopener noreferrer" : undefined} data-cursor="hover" data-cursor-label={isExt ? "Use Haya Ai" : "Read case"} data-screen-label={meta.display || p.title}>
         <div className="wp-cover">
           <img src={p.cover} alt={`${meta.display || p.title} — cover`} loading="lazy" />
         </div>

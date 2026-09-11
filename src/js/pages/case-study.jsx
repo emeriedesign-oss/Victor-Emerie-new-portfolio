@@ -120,7 +120,7 @@ function CaseStudy() {
     <main>
       <header className="cs-header shell" data-screen-label={`Case study: ${p.title}`} data-comment-anchor="98f9704c67-header-64-7">
         <RevealFade data-comment-anchor="d02e1acce5-div-83-10">
-          <a href="Work.html" className="cs-crumb" data-cursor="hover" data-cursor-label="Back">
+          <a href="work.html" className="cs-crumb" data-cursor="hover" data-cursor-label="Back">
             <Arrow /> All work
           </a>
         </RevealFade>
@@ -241,11 +241,11 @@ function CaseStudy() {
       </Section>
 
       <nav className="cs-pagenav shell" data-screen-label="Prev / next case">
-        <a href={`Case Study.html?p=${prev.slug}`} data-cursor="hover" data-cursor-label="Previous">
+        <a href={`case-study.html?p=${prev.slug}`} data-cursor="hover" data-cursor-label="Previous">
           <div className="dir">← Previous</div>
           <div className="t">{prev.title}</div>
         </a>
-        <a className="next" href={`Case Study.html?p=${next.slug}`} data-cursor="hover" data-cursor-label="Next">
+        <a className="next" href={`case-study.html?p=${next.slug}`} data-cursor="hover" data-cursor-label="Next">
           <div className="dir">Next →</div>
           <div className="t">{next.title}</div>
         </a>

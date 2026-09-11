@@ -1,62 +1,93 @@
-# Victor's Personal Portfolio — local import
+# Victor Emerie — Portfolio
 
-Imported from Claude Design project `1032ade9-53ac-49e7-af04-aa35ed2c75cb`.
-Entry point for this import: **`src/Case Study.html`**.
+Personal portfolio and UX case-study site for Victor Chiemerie Omeruta,
+behavioural UX designer.
 
-## Run
+Static site, no build step. React 18 and Babel standalone are loaded from a CDN,
+and the `.jsx` files are transpiled in the browser.
+
+## Run locally
 
 ```bash
 python3 -m http.server 8977 --directory src
 ```
 
-Then open <http://localhost:8977/Case%20Study.html>.
+Open <http://localhost:8977>.
 
-Must be served over HTTP — the page loads `.jsx` via Babel standalone, which
-`file://` blocks with CORS.
+It **must** be served over HTTP. Opening the files directly via `file://` fails,
+because Babel fetches the `.jsx` sources over XHR and the browser blocks that on
+`file://` origins.
 
-## Case Study page
+## Project structure
 
-`Case Study.html` is a shell that loads, in order:
+```
+src/
+├── index.html              Redirects to work.html
+├── work.html               Landing page — project index
+├── case-study.html         Single case study, routed by ?p=<slug>
+├── portfolio.html
+├── about.html
+├── services.html
+├── styles/
+│   └── main.css            All styling, including theme tokens
+├── js/
+│   ├── data.js             window.PROJECTS — all project content
+│   ├── cs-overrides.js     Patches applied over data.js
+│   ├── components/
+│   │   ├── site-common.jsx Nav, Footer, Cursor, RevealLine, RevealFade, useReveal
+│   │   ├── image-slot.js   <image-slot> custom element (drag-and-drop placeholders)
+│   │   └── tweaks-panel.jsx Dev-only theme tweak panel
+│   └── pages/
+│       ├── case-study.jsx  Renders one project from window.PROJECTS
+│       ├── work.jsx
+│       ├── portfolio.jsx
+│       ├── about.jsx
+│       └── services.jsx
+└── assets/                 36 images + 1 video
+```
 
-| File | Role |
-|---|---|
-| `data.js` | `window.PROJECTS` — all project content |
-| `cs-overrides.js` | patches applied on top of `data.js` |
-| `image-slot.js` | `<image-slot>` custom element (drag-drop placeholders) |
-| `tweaks-panel.jsx` | dev tweaks panel |
-| `site-common.jsx` | `Nav`, `Footer`, `Cursor`, `RevealLine`, `RevealFade`, `useReveal`, … |
-| `case-study-page.jsx` | the page itself |
+Every page is a thin HTML shell. The shell loads, in dependency order: data →
+overrides → components → that page's module. Load order matters, because the
+modules communicate through globals on `window` rather than ES imports — Babel
+standalone transpiles each file in isolation, so there is no module graph.
 
-Routing is `?p=<slug>`. With no slug it falls back to the first non-external
-project. Slugs:
+## Content model
 
-| Slug | Title |
-|---|---|
-| `northwind` | Haya AI — `external: true`, redirects to usehaya.io |
-| `vault-co` | 3EX Mobile |
-| `lumen-health` | Nebula Protocol |
-| `cartwheel` | 3EX Web Exchange |
-| `orbit-hq` | CPT Funded |
+All copy and imagery lives in `src/js/data.js` as `window.PROJECTS`. Adding a
+project means adding an entry there; no page markup needs to change.
 
-## Verified
+`case-study.html` selects a project with the `?p=<slug>` query parameter, and
+falls back to the first non-external project when the slug is missing or
+unknown.
 
-- All 13 sections render for every non-external project.
-- All 36 referenced assets resolve; `3ex-hero.mp4` loads (1494px, readyState 4).
-- `?p=` routing correct for all four case studies; prev/next wraps.
-- No console errors.
+| Slug | Title | Note |
+|---|---|---|
+| `northwind` | Haya AI | `external: true` — redirects to usehaya.io |
+| `vault-co` | 3EX Mobile | |
+| `lumen-health` | Nebula Protocol | |
+| `cartwheel` | 3EX Web Exchange | |
+| `orbit-hq` | CPT Funded | |
 
-## Known issue (pre-existing, carried over from the design project)
+## Provenance
 
-`data.js` sets `coverVideo: "assets/3ex-cover.mp4"` on `vault-co`, but that file
-does not exist in the source project. It is inert — no component reads
-`coverVideo` — so nothing 404s at runtime. Either upload the file or drop the
-field.
+Imported from the Claude Design project `1032ade9-53ac-49e7-af04-aa35ed2c75cb`.
+Design-tool instrumentation was stripped from the HTML shells on import, and the
+files were reorganised into the layout above — in the design project everything
+sits flat in one directory, and the pages are named with capitals and spaces
+(`Case Study.html`). If you re-sync from the design project, expect those
+filenames and paths to differ.
 
-## Note on rendering
+## Known issue
 
-The reveal animations (`.reveal-line` / `.reveal-fade`) are driven by an
-IntersectionObserver that adds `.in`, plus a CSS transition. Chrome freezes
-those transitions on pages it is not painting (background tab, hidden pane,
-`--headless` with virtual time), which leaves headings clipped mid-reveal in
-automated captures. That is a capture artifact, not a layout bug — with the
-transition neutralized the text sits at `translateY(0)` with zero clipping.
+`src/js/data.js` sets `coverVideo: "assets/3ex-cover.mp4"` on `vault-co`, but
+that file does not exist in the source design project. It is currently inert —
+no component reads `coverVideo` — so nothing 404s at runtime. Either add the
+file or drop the field before anything starts consuming it.
+
+## A note on the reveal animations
+
+`.reveal-line` and `.reveal-fade` are driven by an IntersectionObserver that adds
+an `.in` class, plus a CSS transition. Chrome freezes those transitions on pages
+it is not painting — a background tab, a hidden pane, headless with virtual time
+— which leaves headings clipped mid-reveal in automated screenshots. That is a
+capture artifact, not a layout bug.
