@@ -116,6 +116,25 @@ Each case-study shell declares its own project:
 The canonical host is hard-coded as `https://victoremerie.com`. If the domain
 changes, update it in every `src/**/index.html`, `robots.txt` and `sitemap.xml`.
 
+## Cache busting
+
+The site has no build step and no content-hashed filenames, so a browser that
+cached `/styles/main.css` would keep serving it after a deploy. Two things
+prevent that:
+
+- `vercel.json` serves CSS, JS and images with `max-age=0, must-revalidate`,
+  so browsers revalidate (a cheap 304) instead of assuming freshness.
+- `tools/stamp-assets.mjs` appends a content hash to the local CSS/JS URLs in
+  every page shell, so the URL itself changes when a file changes.
+
+**After editing anything in `src/styles` or `src/js`, run:**
+
+```bash
+node tools/stamp-assets.mjs
+```
+
+It is idempotent — re-running with no file changes rewrites nothing.
+
 ## Provenance
 
 Imported from the Claude Design project `1032ade9-53ac-49e7-af04-aa35ed2c75cb`.
