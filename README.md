@@ -116,6 +116,16 @@ Each case-study shell declares its own project:
 The canonical host is hard-coded as `https://victoremerie.com`. If the domain
 changes, update it in every `src/**/index.html`, `robots.txt` and `sitemap.xml`.
 
+## Media
+
+Images are WebP, capped at 1600px on the long edge, quality 82. The hero video
+is H.264, 1080px wide, CRF 30, audio stripped (it plays muted). Together that
+took the media payload from 35 MB to 4.1 MB.
+
+Regenerate with `sharp` / `ffmpeg` if you add new media; keep favicons and
+`assets/icons/og-cover.png` as PNG, since social scrapers and browsers expect
+those formats.
+
 ## Cache busting
 
 The site has no build step and no content-hashed filenames, so a browser that
