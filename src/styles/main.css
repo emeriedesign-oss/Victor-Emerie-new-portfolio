@@ -1003,3 +1003,57 @@ body,p,li,.hero-tagline,.page-hero-lead,.cs-summary,.cs-body p,.about-body p,.sv
   .marquee-track { animation: none !important; }
   .cursor, .cursor-dot { display: none !important; }
 }
+
+/* ============================================================
+   Mobile menu + footer
+   ------------------------------------------------------------
+   The menu links were being caught by the shared "shrink the big type on
+   mobile" rule above and rendering at 18px. They are their own thing, so
+   they are sized here instead.
+
+   While the menu is open the bar has to sit above it: .nav creates its own
+   stacking context, so the burger's z-index could never lift it out on its
+   own — which is why neither the brand nor the close button was visible.
+   ============================================================ */
+@media (max-width: 760px) {
+  .nav.menu-open {
+    z-index: 9500;
+    background: transparent;
+    backdrop-filter: none;
+    border-bottom: 0;
+  }
+
+  .mobile-menu {
+    justify-content: center;
+    padding: 96px 24px 120px;
+    overflow-y: auto;            /* safety on short screens */
+  }
+  .mobile-menu-links { gap: 4px; }
+  .mobile-menu-links a {
+    font-size: clamp(30px, 8.5vw, 42px);
+    line-height: 1.26;
+  }
+  .mobile-menu-cta { margin-top: 28px; }
+  .mobile-menu-cta .btn { padding: 15px 26px; font-size: 14px; }
+  .mobile-menu-foot {
+    bottom: 28px; left: 24px; right: 24px;
+    font-size: 12px; letter-spacing: 0.04em;
+  }
+
+  /* At this width .shell adds 20px of horizontal padding, and the footer is a
+     .shell nested inside the contact .shell — so it was indented twice and sat
+     40px in while the rest of the page sat at 20px. A nested shell should not
+     re-inset. */
+  .shell .shell { padding-left: 0; padding-right: 0; width: 100%; }
+
+  /* Footer: two columns, the second flushed right, so each row spans the
+     full width instead of trailing off raggedly. */
+  .footer { flex-direction: column; align-items: stretch; gap: 18px; }
+  .footer-socials {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 16px;
+    width: 100%;
+  }
+  .footer-socials a:nth-child(even) { justify-self: end; text-align: right; }
+}

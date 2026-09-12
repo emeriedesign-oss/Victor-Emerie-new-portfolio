@@ -165,7 +165,9 @@ function Nav({ page = "home", onCurtain }) {
 
   return (
     <>
-      <nav className={`nav ${stuck ? "is-stuck" : ""}`}>
+      {/* menu-open lifts the bar above the full-screen menu so the brand and
+          the close button stay visible and clickable while it is open */}
+      <nav className={`nav ${stuck ? "is-stuck" : ""} ${menuOpen ? "menu-open" : ""}`}>
         <div className="shell nav-inner">
           <a href="/" className="brand" onClick={goHome} data-cursor="hover" data-cursor-label="Home">
             <span className="brand-dot"></span>
