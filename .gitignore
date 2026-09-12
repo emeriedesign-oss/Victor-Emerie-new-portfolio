@@ -5,3 +5,5 @@ shots/
 
 # vercel
 .vercel/
+.vercel
+.env*
