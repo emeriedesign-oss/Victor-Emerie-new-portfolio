@@ -3,19 +3,20 @@
 Personal portfolio and UX case-study site for Victor Chiemerie Omeruta,
 behavioural UX designer.
 
-Static site, no build step. React 18 and Babel standalone load from a CDN and the
-`.jsx` files are transpiled in the browser.
+Built with Vite. React and the JSX compile ahead of time, so the browser
+downloads a small first-party bundle — no CDN, no in-browser compiler.
 
 ## Run locally
 
 ```bash
-python3 -m http.server 8977 --directory src
+npm install
+npm run dev      # dev server with hot reload
+npm run build    # production build into dist/
+npm run preview  # serve the built output
 ```
 
-Open <http://localhost:8977>.
-
-It **must** be served over HTTP. Opening the files via `file://` fails, because
-Babel fetches the `.jsx` sources over XHR and browsers block that on `file://`.
+The site is built with Vite. React and the JSX are compiled ahead of time, so
+the browser downloads a small bundle rather than a compiler.
 
 ## URLs
 
@@ -44,46 +45,43 @@ Pages *user* site. Hosting it in a subfolder (a GitHub Pages *project* site,
 ## Project structure
 
 ```
-src/
-├── index.html              /
-├── work/index.html         /work/
-├── services/index.html
+public/                    copied verbatim into the build
+├── assets/                images (WebP), hero video, favicons, OG card
+├── favicon.ico
+├── robots.txt
+├── sitemap.xml
+└── site.webmanifest
+
+src/                       Vite root
+├── index.html             /                    one HTML shell per page,
+├── work/index.html        /work/               holding that page's <head>
+├── services/index.html                         metadata and nothing else
 ├── about/index.html
-├── cpt-funded/index.html   one directory per case study
+├── cpt-funded/index.html  one directory per case study
 ├── 3ex-mobile/index.html
 ├── nebula-protocol/index.html
 ├── 3ex-web-exchange/index.html
-│
-├── favicon.ico             16 / 32 / 48, PNG-in-ICO
-├── robots.txt
-├── sitemap.xml
-├── site.webmanifest
-│
-├── styles/
-│   └── main.css            All styling, including theme tokens
-├── js/
-│   ├── data.js             window.PROJECTS — all project content
-│   ├── cs-overrides.js     Patches applied over data.js
-│   ├── routes.js           Slug → URL map; the only place URLs are built
-│   ├── components/
-│   │   ├── site-common.jsx Nav, Footer, Cursor, RevealLine, RevealFade, useReveal
-│   │   ├── image-slot.js   <image-slot> custom element
-│   │   └── tweaks-panel.jsx Dev-only theme panel
-│   └── pages/
-│       ├── portfolio.jsx   Home
-│       ├── work.jsx
-│       ├── case-study.jsx  Renders whichever project the shell declares
-│       ├── about.jsx
-│       └── services.jsx
-└── assets/
-    └── icons/              Favicons, apple-touch icon, OG card
+├── entries/               one module entry per page; sets import order
+│   ├── bootstrap.js       publishes React on window
+│   └── home|work|services|about|case-study.js
+├── styles/main.css
+└── js/
+    ├── data.js            window.PROJECTS — all project content
+    ├── cs-overrides.js    patches applied over data.js
+    ├── routes.js          slug -> URL map; the only place URLs are built
+    ├── components/        site-common.jsx, image-slot.js, tweaks-panel.jsx
+    └── pages/             portfolio, work, case-study, about, services
+
+dist/                      build output (gitignored)
 ```
 
-Each page is a thin HTML shell holding the `<head>` metadata and the script
-tags. The shell loads, in dependency order: data → overrides → routes →
-components → that page's module. **Load order matters**: the modules talk to each
-other through globals on `window`, not ES imports, because Babel standalone
-transpiles each file in isolation and there is no module graph.
+The modules communicate through globals on `window` rather than ES imports —
+that is inherited from the original design export, where every file was a
+`<script type="text/babel">` sharing global scope. The entry files preserve the
+load order that arrangement depends on, and `site-common.jsx` and
+`tweaks-panel.jsx` now publish their components to `window` explicitly, since
+module scope no longer does it implicitly. Converting to real imports is the
+obvious next cleanup.
 
 ## Content model
 
@@ -126,24 +124,12 @@ Regenerate with `sharp` / `ffmpeg` if you add new media; keep favicons and
 `assets/icons/og-cover.png` as PNG, since social scrapers and browsers expect
 those formats.
 
-## Cache busting
+## Caching
 
-The site has no build step and no content-hashed filenames, so a browser that
-cached `/styles/main.css` would keep serving it after a deploy. Two things
-prevent that:
-
-- `vercel.json` serves CSS, JS and images with `max-age=0, must-revalidate`,
-  so browsers revalidate (a cheap 304) instead of assuming freshness.
-- `tools/stamp-assets.mjs` appends a content hash to the local CSS/JS URLs in
-  every page shell, so the URL itself changes when a file changes.
-
-**After editing anything in `src/styles` or `src/js`, run:**
-
-```bash
-node tools/stamp-assets.mjs
-```
-
-It is idempotent — re-running with no file changes rewrites nothing.
+Vite emits content-hashed filenames into `assets/build/`, so those are served
+`immutable` for a year — a changed file gets a new name and is picked up
+immediately. Images in `public/assets` are not hashed, so they revalidate on
+each load (a 304, no body).
 
 ## Provenance
 

@@ -291,3 +291,12 @@ Object.assign(window, {
   Cursor, useReveal, Magnetic, RevealLine, RevealFade, Arrow,
   Curtain, Nav, Footer, ThemeToggle, ScrollBar, useSiteTheme
 });
+/* These used to land on `window` implicitly: Babel-standalone ran each
+   <script type="text/babel"> in global scope, so a top-level `function Nav`
+   became window.Nav. Under a real build every file is a module with its own
+   scope, so the shared surface is published explicitly. The page modules keep
+   reading it off window, which leaves their code untouched. */
+Object.assign(window, {
+  Cursor, useReveal, Magnetic, RevealLine, RevealFade, Arrow,
+  Curtain, Nav, Footer, ThemeToggle, ScrollBar, useSiteTheme
+});

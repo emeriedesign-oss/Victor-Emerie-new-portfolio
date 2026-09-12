@@ -417,3 +417,6 @@ Object.assign(window, {
   TweakSlider, TweakToggle, TweakRadio, TweakSelect,
   TweakText, TweakNumber, TweakColor, TweakButton,
 });
+
+/* Published for the same reason as in site-common.jsx — see the note there. */
+Object.assign(window, { useTweaks, TweaksPanel, TweakSection, TweakRadio });

@@ -1,9 +1,10 @@
-# verification screenshots
-shots/
-
-.DS_Store
 
 # vercel
-.vercel/
-.vercel
+# verification screenshots
+.DS_Store
 .env*
+.vercel
+.vercel/
+dist/
+node_modules/
+shots/

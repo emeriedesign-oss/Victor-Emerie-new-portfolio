@@ -84,7 +84,7 @@ function SolutionGallery({ p }) {
       <div className="cs-gallery" ref={ref} data-comment-anchor="1c3441aaf7-div-127-11" data-cursor="hover" data-cursor-label="Drag">
         {imgs.map((src) =>
         <div className="cell" key={src}>
-            <img loading="lazy" decoding="async" src={src} alt={`${p.title} — solution`} loading="lazy" data-comment-anchor="dd6f64877b-img-81-13" />
+            <img loading="lazy" decoding="async" src={src} alt={`${p.title} — solution`} data-comment-anchor="dd6f64877b-img-81-13" />
           </div>
         )}
         {Array.from({ length: slots }).map((_, i) =>
