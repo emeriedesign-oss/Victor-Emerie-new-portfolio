@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://victoremerie.com/sitemap.xml
+Sitemap: https://www.victoremerie.com/sitemap.xml
