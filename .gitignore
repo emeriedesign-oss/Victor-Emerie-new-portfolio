@@ -2,3 +2,6 @@
 shots/
 
 .DS_Store
+
+# vercel
+.vercel/
