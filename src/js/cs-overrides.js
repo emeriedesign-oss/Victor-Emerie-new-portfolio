@@ -17,7 +17,7 @@
       title: "3EX Mobile",
       label: "3EX · MOBILE TRADING",
       year: "2025",
-      heroVideo: "/assets/3ex-hero.mp4",
+      heroImg: "/assets/3ex-screen-1.webp",
       strategyImg: "/assets/3ex-screen-7.webp",
       gallery: [
         "/assets/3ex-screen-1.webp",
