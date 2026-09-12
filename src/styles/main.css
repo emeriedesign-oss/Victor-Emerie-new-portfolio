@@ -899,3 +899,84 @@ body,p,li,.hero-tagline,.page-hero-lead,.cs-summary,.cs-body p,.about-body p,.sv
   .about-read p:first-of-type::first-letter { font-size: 40px; }
   .eyebrow, .section-meta, .hero-meta, .footer-inner, .wp-meta, .cs-crumb { font-size: 12px; }
 }
+
+/* ============================================================
+   Mobile refinements
+   ------------------------------------------------------------
+   Several headings carry inline font-size values baked in by the
+   design tool — 78px on the section titles and 48px on the project
+   names in js/pages/portfolio.jsx, clamp() on the contact headlines.
+   An inline style outranks any selector, so the mobile sizes below
+   need !important; it is the only way to restore a sane mobile type
+   scale without altering the desktop rendering those inline values
+   produce. Rules that are not fighting an inline style are left
+   plain on purpose.
+   ============================================================ */
+
+/* --- Nav: the call-to-action belongs in the hamburger menu only.
+       `.nav-cta { display: none }` already exists higher up, but the
+       generic `.btn { display: inline-flex }` is declared after it at
+       equal specificity and was winning, so the button stayed visible. */
+@media (max-width: 720px) {
+  .nav-cta { display: none !important; }
+}
+
+@media (max-width: 760px) {
+  /* --- Display headings: one shared size across every page --- */
+  .section-title,
+  .page-hero-title,
+  .cs-title,
+  .contact-headline { font-size: 24px !important; line-height: 1.22 !important; }
+
+  /* --- Project and row names: Haya AI, 3EX Mobile, Nebula Protocol… --- */
+  .work-row .name,
+  .wp-name,
+  .svc-name,
+  .cs-pagenav .t,
+  .tl-role { font-size: 24px !important; line-height: 1.25 !important; }
+
+  /* Each RevealLine is its own block, which forced "Featured / Designs"
+     onto two lines regardless of size. Inline-block lets the parts flow
+     together and wrap only when they genuinely need to. */
+  .section-title .reveal-line,
+  .contact-headline .reveal-line,
+  .page-hero-title .reveal-line {
+    display: inline-block;
+    margin-right: 0.24em;
+    padding-bottom: 0.12em;
+    margin-bottom: -0.12em;
+  }
+  /* RevealLine forwards its style prop to the inner animated span, so the
+     baked-in 78px lands there — one level below .reveal-line — and has to be
+     reset on that element specifically. */
+  .section-title .reveal-line > span,
+  .contact-headline .reveal-line > span,
+  .page-hero-title .reveal-line > span {
+    font-size: inherit !important;
+    line-height: inherit !important;
+  }
+  .section-title .reveal-line:last-child,
+  .contact-headline .reveal-line:last-child,
+  .page-hero-title .reveal-line:last-child { margin-right: 0; }
+
+  /* Tighten the gaps these headings sat inside --- */
+  .section-head { margin-bottom: 28px; }
+  .contact-headline { margin-bottom: 4px; }
+
+  /* --- Hero: the name is the one thing that should read larger --- */
+  .hero-title-split { font-size: 32px; line-height: 1.14; }
+
+  /* --- Hero figures: there is no hover on touch, so the overlay CTA is
+         always visible and sits just above the bottom edge of the image
+         rather than dead centre. --- */
+  .hero-figure-cta {
+    top: auto;
+    bottom: 16px;
+    transform: translate(-50%, 0);
+    opacity: 1;
+    padding: 12px 20px;
+    font-size: 12px;
+  }
+  .hero-figure-frame:hover .hero-figure-cta,
+  .hero-figure-frame:active .hero-figure-cta { transform: translate(-50%, 0); opacity: 1; }
+}
