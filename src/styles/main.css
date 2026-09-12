@@ -980,3 +980,26 @@ body,p,li,.hero-tagline,.page-hero-lead,.cs-summary,.cs-body p,.about-body p,.sv
   .hero-figure-frame:hover .hero-figure-cta,
   .hero-figure-frame:active .hero-figure-cta { transform: translate(-50%, 0); opacity: 1; }
 }
+
+/* ============================================================
+   Reduced motion
+   ------------------------------------------------------------
+   The reveals start hidden (opacity 0, translateY) and are brought in by a
+   transition. Simply disabling transitions would leave that content stuck in
+   its hidden state, so the end state is forced on as well — motion is removed,
+   never the content.
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal-line > span { transform: none !important; }
+  .reveal-fade { opacity: 1 !important; transform: none !important; }
+  .hero-figure-cta { opacity: 1 !important; }
+  .marquee-track { animation: none !important; }
+  .cursor, .cursor-dot { display: none !important; }
+}

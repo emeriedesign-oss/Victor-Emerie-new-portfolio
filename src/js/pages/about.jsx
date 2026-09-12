@@ -32,7 +32,7 @@ function AboutPage() {
       <section className="section shell" style={{ paddingTop: 0 }} data-screen-label="Bio">
         <div className="about-column">
           <figure className="about-figure" data-cursor="hover" data-cursor-label="Victor">
-            <img src="assets/victor-speaking.jpg" alt="Victor Chiemerie speaking" width="1400" height="933" decoding="async" data-comment-anchor="7e12efaef6-img-36-15" />
+            <img src="/assets/victor-speaking.webp" alt="Victor Chiemerie speaking" width="1400" height="933" decoding="async" data-comment-anchor="7e12efaef6-img-36-15" />
           </figure>
           <RevealFade delay={150}>
             <div className="about-body about-read">

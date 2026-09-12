@@ -42,7 +42,7 @@ function Hero() {
       <div className="hero-figures">
         <figure className="hero-figure">
           <div className="hero-figure-frame">
-            <img src="assets/victor-hero-portrait.png" alt="Victor Chiemerie" width="800" height="800" fetchpriority="high" decoding="async" />
+            <img src="/assets/victor-hero-portrait.webp" alt="Victor Chiemerie" width="800" height="800" fetchpriority="high" decoding="async" />
             <a href="/about/" className="hero-figure-cta" data-cursor="hover" data-cursor-label="About">
               <span>About me</span>
               <Arrow />
@@ -52,7 +52,7 @@ function Hero() {
         </figure>
         <figure className="hero-figure">
           <div className="hero-figure-frame">
-            <img src="assets/haya-cover.jpg" alt="Haya AI — product behavioral intelligence layer" width="2600" height="1733" fetchpriority="high" decoding="async" />
+            <img src="/assets/haya-cover.webp" alt="Haya AI — product behavioral intelligence layer" width="2600" height="1733" fetchpriority="high" decoding="async" />
             <a href="https://usehaya.io/" target="_blank" rel="noopener noreferrer" className="hero-figure-cta" data-cursor="hover" data-cursor-label="Use Haya">
                 <span>Use Haya</span>
               <Arrow />
@@ -81,11 +81,11 @@ function Hero() {
 
 /* ============ Work — real case studies (data.js) ============ */
 const WORK_ROWS = [
-{ num: "01", slug: "northwind", name: "Haya AI", desc: "A product behavioral intelligence layer", year: "2026", tag: "B2B SaaS · Founder", cover: "assets/haya-cover.jpg" },
-{ num: "02", slug: "vault-co", name: "3EX Mobile", desc: "Crypto trading app redesign with AI Crypto GPT — guided for beginners, dense for pros.", year: "2025", tag: "Crypto · Mobile", cover: "assets/3ex-cover.jpg" },
-{ num: "03", slug: "lumen-health", name: "Nebula Protocol", desc: "DeFi lending & borrowing dApp that accepts DEX LP tokens as collateral.", year: "2025", tag: "DeFi · Product", cover: "assets/nebula-cover.jpg" },
-{ num: "04", slug: "cartwheel", name: "3EX Web Exchange", desc: "Web exchange redesign — clear hierarchy, readable charts, insight at the point of decision.", year: "2025", tag: "Crypto · Web App", cover: "assets/3ex-web-cover.jpg" },
-{ num: "05", slug: "orbit-hq", name: "CPT Funded", desc: "Trust-first redesign for a proprietary trading firm — visual coherence as credibility.", year: "2024", tag: "Fintech · Web", cover: "assets/cpt-cover.jpg" }];
+{ num: "01", slug: "northwind", name: "Haya AI", desc: "A product behavioral intelligence layer", year: "2026", tag: "B2B SaaS · Founder", cover: "/assets/haya-cover.webp" },
+{ num: "02", slug: "vault-co", name: "3EX Mobile", desc: "Crypto trading app redesign with AI Crypto GPT — guided for beginners, dense for pros.", year: "2025", tag: "Crypto · Mobile", cover: "/assets/3ex-cover.webp" },
+{ num: "03", slug: "lumen-health", name: "Nebula Protocol", desc: "DeFi lending & borrowing dApp that accepts DEX LP tokens as collateral.", year: "2025", tag: "DeFi · Product", cover: "/assets/nebula-cover.webp" },
+{ num: "04", slug: "cartwheel", name: "3EX Web Exchange", desc: "Web exchange redesign — clear hierarchy, readable charts, insight at the point of decision.", year: "2025", tag: "Crypto · Web App", cover: "/assets/3ex-web-cover.webp" },
+{ num: "05", slug: "orbit-hq", name: "CPT Funded", desc: "Trust-first redesign for a proprietary trading firm — visual coherence as credibility.", year: "2024", tag: "Fintech · Web", cover: "/assets/cpt-cover.webp" }];
 
 
 function Work() {
@@ -240,7 +240,7 @@ function About() {
 
       <div className="about-column">
         <figure className="about-figure" data-cursor="hover" data-cursor-label="Victor">
-          <img src="assets/victor-speaking.jpg" alt="Victor Chiemerie speaking" width="1400" height="933" loading="lazy" decoding="async" data-comment-anchor="f1f6a10e5e-img-246-13" />
+          <img src="/assets/victor-speaking.webp" alt="Victor Chiemerie speaking" width="1400" height="933" loading="lazy" decoding="async" data-comment-anchor="f1f6a10e5e-img-246-13" />
         </figure>
         <RevealFade delay={150}>
           <div className="about-body about-read" style={{ lineHeight: "1.55" }}>
